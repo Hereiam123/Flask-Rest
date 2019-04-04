@@ -32,7 +32,20 @@ class Product(db.Model):
     def __init__(self, name, description, price, qty):
         self.name = name
         self.description = description
-        self.price = priceself.qty = qty
+        self.price = price
+        self.qty = qty
+
+# Product Schema
+
+
+class ProductSchema(ma.Schema):
+    class Meta:
+        fields = ('id', 'name', 'description', 'price', 'qty')
+
+
+# Init schema
+product_schema = ProductSchema(strict=True)
+products_schema = ProductSchema(many=True, strict=True)
 
 
 @app.route('/', methods=['GET'])
